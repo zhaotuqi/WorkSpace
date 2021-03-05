@@ -1,7 +1,7 @@
 FROM centos:centos7
-MAINTAINER zhaoli <zhaoli@163.com>
+MAINTAINER zhaotuqi <zhaotuqi@gmail.com>
 RUN mkdir -p /data/software && mkdir -p /usr/local/webserver
-ADD software/ \
+ADD www/ \
 /data/software/
 WORKDIR /data/software
 
