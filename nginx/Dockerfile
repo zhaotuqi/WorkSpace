@@ -1,8 +1,8 @@
 FROM centos:centos7
 MAINTAINER zhaotuqi <zhaotuqi@gmail.com>
 RUN mkdir -p /data/www #&& mkdir -p /usr/local/webserver
-ADD ../www/ \
-/data/www/
+#ADD ../www/ \
+#/data/www/
 WORKDIR /data/www
 RUN rm -rf /etc/yum.repos.d/CentOS-Base.repo
 COPY Centos-7.repo /etc/yum.repos.d/CentOS-Base.repo
@@ -32,6 +32,7 @@ RUN cd /tmp/nginx-1.19.7 && ./configure --prefix=/etc/nginx && make -j 2 && make
 RUN rm -rf /etc/nginx/conf/nginx.conf
 COPY nginx.conf /etc/nginx/conf
 ADD conf.d/ /etc/nginx/conf/conf.d 
+RUN cp /etc/nginx/html/* /data/www/.
 RUN ln /etc/nginx/sbin/nginx /usr/local/bin/nginx
 
 
@@ -46,3 +47,4 @@ RUN ln /etc/nginx/sbin/nginx /usr/local/bin/nginx
 
 #开放端口
 EXPOSE 80 22 3306 6379
+CMD ["bash"]
